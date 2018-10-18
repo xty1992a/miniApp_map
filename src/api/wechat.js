@@ -16,13 +16,8 @@ export const login = () => new Promise(resolve => {
 
 export const getUserInfo = () => new Promise(resolve => {
   wx.getUserInfo({
-	success: (res) => {
-	  console.log(res)
-	  resolve({success: true, data: res.userInfo})
-	},
-	fail(err) {
-	  console.log('get user info error', err)
-	},
+	success: (res) => resolve({success: true, data: res.userInfo}),
+	fail: console.log,
   })
 })
 
@@ -35,24 +30,12 @@ export const wxPay = (params) => new Promise(resolve => {
    paySign	String	是	签名,具体签名方案参见小程序支付接口文档;
    */
   wx.requestPayment({
-	'timeStamp': params.timeStamp,
-	'nonceStr': params.nonceStr,
-	'package': params.packageStr,
-	'signType': params.signType,
-	'paySign': params.paySign,
+	...params,
 	success: res => {
-	  console.log('pay success response ', res)
-	  resolve({
-		success: true,
-		data: res,
-	  })
+	  resolve({success: true, data: res})
 	},
 	fail: res => {
-	  console.log('pay fail response ', res)
-	  resolve({
-		success: false,
-		data: res,
-	  })
+	  resolve({success: false, data: res})
 	},
   })
 })

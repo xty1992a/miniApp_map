@@ -9,7 +9,7 @@
   },
   "miniprogramRoot": "./dist/",
   "compileType": "miniprogram",
-  "appid": "wx7b1a5877c9bb7c7a",
+  "appid": "",
   "projectname": "map_keng",
   "condition": {
     "search": {
